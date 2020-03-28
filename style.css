@@ -1,0 +1,27 @@
+#everything {
+    font-family: Arial, Helvetica, sans-serif;
+    /*color: darkslategray;*/
+    margin: 100px;
+}
+
+#inputs {
+    margin: 60px auto;
+    width: 30%;
+    /*line-height: 5em;*/
+    list-style-type: none;
+    color: teal;
+    text-align: left;
+}
+
+#button {
+    text-align: center;
+}
+
+#title {
+    text-align: center;
+    color: darkslategray;
+}
+
+.input {
+    margin: 20px auto;
+}
