@@ -5,8 +5,9 @@
 }
 
 #inputs {
+    text-align: center;
     margin: 60px auto;
-    width: 20%;
+    padding-left: 100px;
 	/*line-height: 5em;*/
 	list-style-type: none;
 	color: teal;
@@ -14,11 +15,6 @@
 
 #button {
 	text-align: center;
-}
-
-#title {
-	text-align: center;
-	color: darkslategray;
 }
 
 #no_name_warning,
@@ -38,10 +34,19 @@
     display: none;
 }
 
-.warning {
-	color: red;
+#outputs {
+    margin: 60px auto;
+    width: 20%;
+	/*line-height: 5em;*/
+	list-style-type: none;
+	color: teal;
 }
 
-.input {
+.inp {
 	margin: 20px auto;
+}
+
+.title {
+	text-align: center;
+	color: darkslategray;
 }
