@@ -1,27 +1,47 @@
 #everything {
-    font-family: Arial, Helvetica, sans-serif;
-    /*color: darkslategray;*/
+	font-family: Arial, Helvetica, sans-serif;
+	/*color: darkslategray;*/
     margin: 100px;
 }
 
 #inputs {
     margin: 60px auto;
-    width: 30%;
-    /*line-height: 5em;*/
-    list-style-type: none;
-    color: teal;
-    text-align: left;
+    width: 20%;
+	/*line-height: 5em;*/
+	list-style-type: none;
+	color: teal;
 }
 
 #button {
-    text-align: center;
+	text-align: center;
 }
 
 #title {
-    text-align: center;
+	text-align: center;
+	color: darkslategray;
+}
+
+#no_name_warning,
+#inv_email_warning,
+#no_email_warning {
+	display: none;
+}
+
+#tyNote {
+    margin: 60px;
     color: darkslategray;
+    font-size: 32px;
+}
+
+#submitted {
+    text-align: center;
+    display: none;
+}
+
+.warning {
+	color: red;
 }
 
 .input {
-    margin: 20px auto;
+	margin: 20px auto;
 }
