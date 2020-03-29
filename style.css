@@ -5,7 +5,7 @@
 }
 
 #inputs {
-    text-align: center;
+    width: 30%;
     margin: 60px auto;
     padding-left: 100px;
 	/*line-height: 5em;*/
@@ -49,4 +49,8 @@
 .title {
 	text-align: center;
 	color: darkslategray;
+}
+
+.error {
+	color: red;
 }

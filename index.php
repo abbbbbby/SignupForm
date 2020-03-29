@@ -1,3 +1,47 @@
+<?php
+// define variables and set to empty values
+$nameErr = $emailErr = "";
+$fname = $lname = $email = $number = "";
+
+function cleanInput($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $validFname = $validEmail = false;
+  if (empty($_POST["first_name_input"])) {
+    $nameErr = "*Name required";
+  } else {
+    $fname = cleanInput($_POST["first_name_input"]);
+    // check if name only contains letters and whitespace
+    if (!preg_match("/^[a-zA-Z ]*$/",$fname)) {
+      $nameErr = "No numbers/special characters";
+    } else {
+      $validFname = true;
+    }
+  }
+
+  if (empty($_POST["email_input"])) {
+    $emailErr = "*Email required";
+  } else {
+    $email = cleanInput($_POST["email_input"]);
+    // check if e-mail address is well-formed
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      $emailErr = "*Invalid email";
+    } else {
+      $validEmail = true;
+    }
+  }
+
+  if($validEmail && $validFname) {
+    //postData($fname, $email);
+  }
+}
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -16,26 +60,14 @@
     <div id=signup_form>
         <h1 class=title>Sign Up!</h1>
         <form id=inputs method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" >
-            <label for="fname">First name*:</label>
-            <input 
-              type="text" 
-              name="first_name_input" 
-              placeholder="John" 
-              size="19" 
-              oninvalid="this.setCustomValidity('Please enter your first name')" 
-              required
-            /><br><br>
+            <label for="first_name_input">First name*:</label>
+            <input type="text" name="first_name_input" placeholder="John" size="19"/>
+            <span class="error"><?php echo $nameErr;?></span><br><br>
             <label for="last_name_input">Last Name:</label>
             <input type="text" name="last_name_input" placeholder="Doe"/><br><br>
-            <label for="email_input">Email*:</label>
-            <input 
-              type="email" 
-              name="email_input" 
-              placeholder="example@example.com" 
-              size="24" 
-              oninvalid="this.setCustomValidity('Please enter valid email')" 
-              required
-            /><br><br>
+            <label for="email">Email*:</label>
+            <input type="text" name="email_input" placeholder="example@example.com" size="24"/>
+            <span class="error"><?php echo $emailErr;?></span><br><br>
             <label for="number_input">Phone Number:</label>
             <input type="text" name="number_input" placeholder="###-###-####" size="16"/><br><br><br>
             <div id="button"><input type="submit" class="btn btn-info" value="Submit Form"></div>
@@ -51,38 +83,3 @@
     <script type="text/javascript" src="transitions.js"></script-->
 </body>
 </html>
-
-<?php
-// define variables and set to empty values
-$nameErr = $emailErr = $genderErr = $websiteErr = "";
-$name = $email = $gender = $comment = $website = "";
-
-function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  if (empty($_POST["name"])) {
-    $nameErr = "Name is required";
-  } else {
-    $name = test_input($_POST["name"]);
-    // check if name only contains letters and whitespace
-    if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
-      $nameErr = "Only letters and white space allowed";
-    }
-  }
-
-  if (empty($_POST["email"])) {
-    $emailErr = "Email is required";
-  } else {
-    $email = test_input($_POST["email"]);
-    // check if e-mail address is well-formed
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      $emailErr = "Invalid email format";
-    }
-  }
-}
-?>
