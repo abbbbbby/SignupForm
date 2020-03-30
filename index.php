@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   if($validEmail && $validFname) {
     $dataHandler = new DataHandler($fname, $lname, $email, $number);
-    echo $dataHandler->postData();
+    $dataHandler->postData();
     $successMessage = "Thank you for your submission!";
   }
 }
@@ -112,29 +112,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div id="button"><input type="submit" class="btn btn-info" value="Submit Form"></div>
         </form>
         <?echo $successMessage?>
-    <div/>
-<!--
-    <div id=results>
-      <h1 class=title>Thank you for Submitting! Here's what we have:</h1>
-      <div id=outputs>
-          <div class=inp>
-              First name: <?php //echo $fname; ?>
-          </div>
-          <div class=inp>
-              Last name: <?php //echo $lname; ?>
-          </div>
-          <div class=inp>
-              Email Address: <?php //echo $email; ?>
-          </div>
-          <div class=inp>
-              Phone Number: <?php //echo $number; ?>
-          </div>
-          <div class=inp>
-              Unique Hex Code: <?php //echo $hexCode; ?>
-          </div>
-      </div>
     </div>
--->
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

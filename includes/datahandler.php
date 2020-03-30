@@ -71,6 +71,23 @@ class DataHandler {
 
         $response = curl_exec($curl);
         curl_close($curl);
+        header('location: results.php');
+        
+        session_start();
+        $_SESSION["first_name"] = $this->fname;
+        $_SESSION["email"] = $this->email;
+        $_SESSION["hex_id"] = $this->hexId;
+        
+        if($this->hasLname) {
+            $_SESSION["last_name"] = $this->lname;
+            #echo $this->lname;
+        }
+
+        if($this->hasNumber) {
+            $_SESSION["number"] = $this->number;
+            #echo $this->number;
+        }
+
         return $response;
     }
 }
