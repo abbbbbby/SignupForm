@@ -1,25 +1,35 @@
 <?php
+  #DISPLAYS THE RESULTS OF THE SIGN UP FORM
+
+  //User inputted values (initialized to N/A)
   $fname = $lname = $email = $number = "N/A";
+  //Generated hex id
   $hexId = "Not Generated";
 
+  //Used to gather the data from dataHandler.php
   session_start();
 
+  //Retrieving first name
   if(isset($_SESSION["first_name"])) {
     $fname = $_SESSION["first_name"];
   }
 
+  //Retrieving last name
   if(isset($_SESSION["last_name"])) {
     $lname = $_SESSION["last_name"];
   }
 
+  //Retrieving email
   if(isset($_SESSION["email"])) {
     $email = $_SESSION["email"];
   }
 
+  //Retrieving phone number
   if(isset($_SESSION["number"])) {
     $number = $_SESSION["number"];
   }
 
+  //Retrieving hex code
   if(isset($_SESSION["hex_id"])) {
     $hexId = $_SESSION["hex_id"];
   }
@@ -42,6 +52,7 @@
   <body id=everything>
     <h1 class=title>Thank you for your Submission!</h1>
     <h2 class=title>Submission Details:</h2>
+    <!--Lists out the user input as well as the hex code-->
     <ul id=inputs>
       <li>
           First name: <?php echo $fname;?>
