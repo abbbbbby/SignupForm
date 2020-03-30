@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     $number = cleanInput($_POST["number_input"]);
     //check that number has 7 digits and no letters
-    if(!preg_match("/[a-zA-Z]/", $number)) {
+    if(preg_match("/[a-zA-Z]/", $number)) {
       $numErr = "*Invalid number";
       $validNumber = false;
     } else {
