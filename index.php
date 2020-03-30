@@ -18,11 +18,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $validFname = $validEmail = $validNumber = $validLname = false;
   if (empty($_POST["first_name_input"])) {
     $fnameErr = "*Name required";
+    $validFname = false;
   } else {
     $fname = cleanInput($_POST["first_name_input"]);
     // check if name only contains letters and whitespace
     if (!preg_match("/^[a-zA-Z ]*$/",$fname)) {
-      $fnameErr = "No numbers/special characters";
+      $fnameErr = "Invalid name";
+      $validFname = false;
     } else {
       $validFname = true;
     }
@@ -35,7 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $lname = cleanInput($_POST["last_name_input"]);
     // check if name only contains letters and whitespace
     if (!preg_match("/^[a-zA-Z ]*$/",$lname)) {
-      $lnameErr = "No numbers/special characters";
+      $lnameErr = "Invalid name";
+      $validLname = false;
     } else {
       $validLname = true;
     }
@@ -43,11 +46,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   if (empty($_POST["email_input"])) {
     $emailErr = "*Email required";
+    $validEmail = false;
   } else {
     $email = cleanInput($_POST["email_input"]);
     // check if e-mail address is well-formed
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
       $emailErr = "*Invalid email";
+      $validEmail = false;
     } else {
       $validEmail = true;
     }
@@ -59,19 +64,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     $number = cleanInput($_POST["number_input"]);
     //check that number has 7 digits and no letters
-    if(preg_match("/^[^a-zA-Z]$/", $number)) {
-      $numErr = "*Invalid phone number" . $number;
+    if(!preg_match("/[a-zA-Z]/", $number)) {
+      $numErr = "*Invalid number";
+      $validNumber = false;
     } else {
       $number = preg_replace("/[^0-9]/","", $number);
       if(strlen($number) != 10) {
-        $numErr = "*Expecting a 10-digit phone number";
+        $numErr = "*Invalid number";
+        $validNumber = false;
       } else {
         $validNumber = true;
       }
     }
   }
 
-  if($validEmail && $validFname) {
+  if($validEmail && $validFname && $validNumber && $validLname) {
     $dataHandler = new DataHandler($fname, $lname, $email, $number);
     $dataHandler->postData();
     $successMessage = "Thank you for your submission!";
